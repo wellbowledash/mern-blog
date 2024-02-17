@@ -52,7 +52,7 @@ export default function FooterCom() {
                     <Footer.Title title = 'Legal'/>
                     <Footer.LinkGroup col>
                         <Footer.Link
-                           href= ''
+                           href= 'mailto:ashmitraj96@gmail.com'
                            target = '_blank'
                            
                            >
