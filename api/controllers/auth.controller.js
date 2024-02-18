@@ -5,13 +5,32 @@ import jwt from 'jsonwebtoken'
 export const signup = async (req,res,next)=>{
    const {username, email, password} = req.body
    if(!username || !email || !password || username===''||email===''||password===''){
-    next(errorHandler(400, 'All fields are required'))
+    return next(errorHandler(400, 'All fields are required'))
    }
-   const checkUser =  await User.findOne({username})
-   if(checkUser){
-      next(errorHandler(400,'User already exists'))
+   const checkUserByUsername =  await User.findOne({username})
+   if(checkUserByUsername){
+      return next(errorHandler(400,'User already exists'))
    }
+   const checkUserByEmail = await User.findOne({email})
+   if(checkUserByEmail){
+      return next(errorHandler(400,'a user already exists with this email'))
+   }
+   if(req.body.password.length<6){
+      return next(errorHandler(400, 'Password must be at least 6 characters'))
+  }
    const hashedPassword = bcryptjs.hashSync(password,10)
+   if(req.body.username.length<6 || req.body.username.length>20){
+      return next(errorHandler(400, 'Username must be between 6 and 20 characters'))
+  }
+  if(req.body.username.includes(' ')){
+      return next(errorHandler(400, 'Username cannot contain space(s)'))
+  }
+  if(req.body.username != req.body.username.toLowerCase()){
+      return next(errorHandler(400, 'Username must be lowercase'))
+  }
+  if(!req.body.username.match(/^[a-zA-Z0-9]+$/)){
+      return next(errorHandler(400, 'Username can only contain letters and numbers'))
+  }
    const newUser  = new User({
     username,
     email,
