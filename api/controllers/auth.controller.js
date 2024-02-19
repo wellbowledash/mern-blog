@@ -19,8 +19,8 @@ export const signup = async (req,res,next)=>{
       return next(errorHandler(400, 'Password must be at least 6 characters'))
   }
    const hashedPassword = bcryptjs.hashSync(password,10)
-   if(req.body.username.length<6 || req.body.username.length>20){
-      return next(errorHandler(400, 'Username must be between 6 and 20 characters'))
+   if(req.body.username.length<4 || req.body.username.length>20){
+      return next(errorHandler(400, 'Username must be between 4 and 20 characters'))
   }
   if(req.body.username.includes(' ')){
       return next(errorHandler(400, 'Username cannot contain space(s)'))

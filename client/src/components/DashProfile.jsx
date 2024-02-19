@@ -8,6 +8,7 @@ import 'react-circular-progressbar/dist/styles.css'
 import { updateFailure, updateStart,updateSuccess,deleteUserStart,deleteUserFailure,deleteUserSuccess, signoutSuccess } from '../redux/user/userSlice'
 import { useDispatch } from 'react-redux'
 import { HiOutlineExclamationCircle } from 'react-icons/hi'
+import { Link } from 'react-router-dom'
 export default function DashProfile() {
     const {currentUser, error} = useSelector(state=>state.user)
     const [imageFile, setImageFile] = useState(null)
@@ -69,6 +70,7 @@ export default function DashProfile() {
     const handleChange = (e)=>{
         setFormData({...formData, [e.target.id] : e.target.value})
     }
+    
     const handleSubmit = async(e) => {
         e.preventDefault()
         setUpdateUserError(null)
@@ -77,6 +79,7 @@ export default function DashProfile() {
             setUpdateUserError('No changes made')
             return
         }
+        
         if(imageFileUploading){
             setUpdateUserError('Please wait for image to upload')
             return
@@ -89,6 +92,7 @@ export default function DashProfile() {
             body: JSON.stringify(formData)
 
            })
+           
            const data = await res.json()
            if(!res.ok){
             dispatch(updateFailure(data.message))
@@ -183,9 +187,25 @@ export default function DashProfile() {
              placeholder='email' defaultValue={currentUser.email} onChange = {handleChange}/>
             <TextInput type='password' id='password'
              placeholder='password' onChange = {handleChange} /> 
-             <Button type='submit' gradientDuoTone='purpleToBlue'>
+             <Button type='submit' gradientDuoTone='purpleToBlue' >
                 Update
              </Button>
+             {
+                currentUser.isAdmin && (
+                    <Link to = {'/create-post'}>
+                    <Button 
+                    type = 'button'
+                    gradientDuoTone='purpleToPink'
+                    className='w-full'
+                    >
+                        Create a post
+                    </Button>
+                    </Link>
+
+                                        
+                )
+             }
+
             
         </form>
         <div className='text-red-500 flex justify-between mt-5'>

@@ -6,6 +6,7 @@ export const test = (req,res)=>{
 }
 
 export const updateUser = async(req,res,next)=>{
+
     if(req.user.id !== req.params.userId){
         return next(errorHandler(403, "You are not allowed to update this user"))
     }
@@ -17,8 +18,8 @@ export const updateUser = async(req,res,next)=>{
 
     }
     if(req.body.username){
-        if(req.body.username.length<6 || req.body.username.length>20){
-            return next(errorHandler(400, 'Username must be between 6 and 20 characters'))
+        if(req.body.username.length<4 || req.body.username.length>20){
+            return next(errorHandler(400, 'Username must be between 4 and 20 characters'))
         }
         if(req.body.username.includes(' ')){
             return next(errorHandler(400, 'Username cannot contain space(s)'))
@@ -31,6 +32,11 @@ export const updateUser = async(req,res,next)=>{
         }
         
     }
+    if(req.body.email===''){
+        return next(errorHandler(400, 'Email cannot be empty'))
+    }
+
+   
         try{
             const updatedUser = await User.findByIdAndUpdate(req.params.userId,{
                 $set : {
