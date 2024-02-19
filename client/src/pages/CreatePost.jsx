@@ -25,9 +25,9 @@ export default function CreatePost() {
            </Select>
         </div>
         <div className='flex gap-4 items-center justify-between border-4 border-teal-400 border-dotted p-3 '>
-            <FileInput type = 'file' accept="audio/*,video/*,image/*"/>
+            <FileInput type = 'file' accept="image/*"/>
             <Button type='button' gradientDuoTone='purpleToBlue' size='sm'
-             outline>Upload File</Button>
+             outline>Upload Image</Button>
         </div>
         <ReactQuill theme="snow" placeholder='Write something....' className='h-72 mb-12' required/>
         <Button type = 'submit' gradientDuoTone='purpleToPink'>
