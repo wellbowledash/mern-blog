@@ -126,7 +126,7 @@ export default function CreatePost() {
         {formData.image && (
             <img src = {formData.image}
             alt = 'upload'
-            className='w-full h-72'/>
+            className='w-full h-72 object-contain'/>
         )}
 
         <ReactQuill theme="snow" placeholder='Write something....' className='h-72 mb-12' required 
