@@ -30,7 +30,7 @@ export const getposts= async(req,res,next)=>{
     try{
        const startIndex = parseInt(req.query.startIndex)||0
        const limit = parseInt(req.query.limit)||9
-       const sortDirection = req.query.order == 'asc'?1:-1
+       const sortDirection = req.query.order === 'asc'?1:-1
        const posts = await Post.find({
         ...(req.query.userId && {userId :req.query.userId }),
         ...(req.query.category && {category :req.query.category }),
@@ -93,7 +93,8 @@ export const updatepost = async(req,res,next)=>{
                 title: req.body.title,
                 content: req.body.content,
                 category: req.body.category,
-                image: req.body.image
+                image: req.body.image,
+                slug : req.body.title.split(' ').join('-').toLowerCase().replace(/[^a-zA-Z0-9-]/g,'')
                }
             }, {new: true})
             res.status(200).json(updatedPost)
