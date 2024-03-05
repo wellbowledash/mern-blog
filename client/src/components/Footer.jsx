@@ -49,23 +49,16 @@ export default function FooterCom() {
                     </Footer.LinkGroup>
                     </div>
                     <div>
-                    <Footer.Title title = 'Legal'/>
+                    <Footer.Title title = 'Contact Us'/>
                     <Footer.LinkGroup col>
                         <Footer.Link
                            href= 'mailto:ashmitraj96@gmail.com'
                            target = '_blank'
                            
                            >
-                        Privacy Policy
+                        Email
                         </Footer.Link>
                 
-                        <Footer.Link
-                           href= ''
-                           target = '_blank'
-                           
-                           >
-                       Terms and conditions
-                        </Footer.Link>
                     </Footer.LinkGroup>
                     </div>
                  
