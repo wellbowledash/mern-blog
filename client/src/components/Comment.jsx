@@ -98,7 +98,7 @@ export default function Comment({comment, onLike, onEdit, onDelete}) {
           }
         </p>
         {
-          (currentUser && currentUser._id === comment.userId)&&(
+          (currentUser)&&(
             <>
              <button
             type = 'button'
