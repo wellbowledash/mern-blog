@@ -23,7 +23,7 @@ export default function CommentSection({postId}) {
         setCommentError('Comment cannot be empty')
     }
     try{
-    const res = await fetch('https://mern-blog-api-sepia.vercel.app/api/comment/create',{
+    const res = await fetch('/api/comment/create',{
         method: 'POST',
         headers: {
             'Content-Type': 'application/json'
@@ -45,7 +45,7 @@ export default function CommentSection({postId}) {
   useEffect(()=>{
      const getComments = async()=>{
         try{
-          const res= await fetch(`https://mern-blog-api-sepia.vercel.app/api/comment/getPostComments/${postId}`)
+          const res= await fetch(`/api/comment/getPostComments/${postId}`)
           if(res.ok){
             const data = await res.json()
             setComments(data)
@@ -63,7 +63,7 @@ export default function CommentSection({postId}) {
         navigate('/sign-in')
         return 
        }
-       const res = await fetch(`https://mern-blog-api-sepia.vercel.app/api/comment/likecomment/${commentId}`, {
+       const res = await fetch(`/api/comment/likecomment/${commentId}`, {
         method: 'PUT'
        })
        if(res.ok){
@@ -96,7 +96,7 @@ export default function CommentSection({postId}) {
         navigate('/sign-in')
         return
        }
-       const res = await fetch(`https://mern-blog-api-sepia.vercel.app/api/comment/deletecomment/${commentId}`,{
+       const res = await fetch(`/api/comment/deletecomment/${commentId}`,{
         method: 'DELETE',
        })
        if(res.ok){

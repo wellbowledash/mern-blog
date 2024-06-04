@@ -15,7 +15,7 @@ const [recentPosts, setRecentPosts] = useState(null)
 useEffect(()=>{
    const fetchPost = async()=>{
     try{
-    const res = await fetch(`https://mern-blog-api-sepia.vercel.app/api/post/getposts?slug=${postSlug}`)
+    const res = await fetch(`/api/post/getposts?slug=${postSlug}`)
     const data = await res.json()
     if(!res.ok){
         setError(true)
@@ -39,7 +39,7 @@ fetchPost()
 useEffect(()=>{
     try{
       const fetchRecentPosts = async()=>{
-        const res = await fetch('https://mern-blog-api-sepia.vercel.app/api/post/getposts?limit=3')
+        const res = await fetch('/api/post/getposts?limit=3')
         const data = await res.json()
         if(res.ok){
             setRecentPosts(data.posts)
