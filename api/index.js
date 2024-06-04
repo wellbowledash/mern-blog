@@ -17,9 +17,9 @@ mongoose.connect(process.env.MONGO)
 
 const app  = express()
 app.use(cors({
-    origin: '*' // Allow all origins
-    // You can also specify a specific origin or an array of origins
-    // origin: ['https://your-frontend-domain.com']
+    origin: 'https://mern-blog-seven-gules.vercel.app',
+    methods: ['GET', 'POST', 'PUT', 'DELETE'],
+    allowedHeaders: ['Content-Type', 'Authorization']
   }));
 app.use(express.json())
 app.use(cookieParser())
