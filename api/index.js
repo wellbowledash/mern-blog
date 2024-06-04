@@ -16,7 +16,11 @@ mongoose.connect(process.env.MONGO)
 })
 
 const app  = express()
-
+app.use(cors({
+    origin: '*' // Allow all origins
+    // You can also specify a specific origin or an array of origins
+    // origin: ['https://your-frontend-domain.com']
+  }));
 app.use(express.json())
 app.use(cookieParser())
 app.listen(3000, ()=>{
