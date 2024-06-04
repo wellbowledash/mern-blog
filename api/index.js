@@ -17,8 +17,8 @@ mongoose.connect(process.env.MONGO)
 
 const app  = express()
 app.use(cors({
+    origin: '*'
     
-    credentials: true
     
   }));
 app.use(express.json())
