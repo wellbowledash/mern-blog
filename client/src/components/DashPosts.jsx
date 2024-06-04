@@ -14,7 +14,7 @@ export default function DashPosts() {
   useEffect(()=>{
     const fetchPosts = async()=>{
       try{
-        const res = await fetch(`/api/post/getposts?userId=${currentUser._id}`)
+        const res = await fetch(`https://mern-blog-api-sepia.vercel.app/api/post/getposts?userId=${currentUser._id}`)
         const data = await res.json()
         if(res.ok){
           setUserPosts(data.posts)
@@ -34,7 +34,7 @@ export default function DashPosts() {
   const handleShowMore = async()=>{
     const startIndex = userPosts.length
     try{
-        const res = await fetch(`/api/post/getposts?userId=${currentUser._id}&startIndex=${startIndex}`)
+        const res = await fetch(`https://mern-blog-api-sepia.vercel.app/api/post/getposts?userId=${currentUser._id}&startIndex=${startIndex}`)
         const data = await res.json()
         if(res.ok){
           setUserPosts((prev)=>[...prev, ...data.posts])
@@ -49,7 +49,7 @@ export default function DashPosts() {
   const handleDeletePost = async()=>{
         setShowModal(false)
         try{
-          const res = await fetch(`/api/post/deletepost/${postIdToDelete}/${currentUser._id}`, {
+          const res = await fetch(`https://mern-blog-api-sepia.vercel.app/api/post/deletepost/${postIdToDelete}/${currentUser._id}`, {
             method: 'DELETE'
           })
           const data = await res.json()
